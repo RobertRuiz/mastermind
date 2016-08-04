@@ -107,3 +107,4 @@ if $0 == __FILE__
   puts "And when guessing #{user_guess.inspect}"
   puts "the result is #{result.inspect}"
 end
+# <!-- testing git connectivity -->
