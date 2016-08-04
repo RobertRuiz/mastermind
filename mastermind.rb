@@ -26,7 +26,7 @@ class MasterMind
 
   # boolean, true if this result is a `win`
   def result_win?(result)
-    result == [:exact_match]*4
+    result == [:exact_match] * 4
   end
 
   # Make a guess, guess should be an Array
@@ -101,10 +101,9 @@ end
 #
 if $0 == __FILE__
   game = MasterMind.new
-  user_guess = ["Red", "Green", "Green", "Blue"]
+  user_guess = %w[Red Green Green Blue]
   result = game.guess(user_guess)
   puts "The Game's secret is #{game.secret.inspect}"
   puts "And when guessing #{user_guess.inspect}"
   puts "the result is #{result.inspect}"
 end
-# <!-- testing git connectivity -->
