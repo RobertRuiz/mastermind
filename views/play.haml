@@ -1,41 +1,45 @@
 !!!
 %html
-  %h1 Ready to play?
+
   %p
     This is a paragraph.  Here I will specify some
     %strong
       bold and
       %em italicized
       text.
-%body
-  %form{:action => "/guess", :method => "post"}
-    %select{:name => "color1"}
-      %option{value => "Blue"} Blue
-      %option{value => "Orange"} Orange
-      %option{value => "Green"} Green
-      %option{value => "Purple"} Purple
-      %option{value => "Yellow"} Yellow
-      %option{value => "Pink"} Pink
-    %select{:name => "color2"}
-      %option{value => "Blue"} Blue
-      %option{value => "Orange"} Orange
-      %option{value => "Green"} Green
-      %option{value => "Purple"} Purple
-      %option{value => "Yellow"} Yellow
-      %option{value => "Pink"} Pink
-    %select{:name => "color3"}
-      %option{value => "Blue"} Blue
-      %option{value => "Orange"} Orange
-      %option{value => "Green"} Green
-      %option{value => "Purple"} Purple
-      %option{value => "Yellow"} Yellow
-      %option{value => "Pink"} Pink
-    %select{:name => "color4"}
-      %option{value => "Blue"} Blue
-      %option{value => "Orange"} Orange
-      %option{value => "Green"} Green
-      %option{value => "Purple"} Purple
-      %option{value => "Yellow"} Yellow
-      %option{value => "Pink"} Pink
-  %div
-    %button Submit
+
+  -# I need to loop over the guesses and show them
+  -# I need to loop over the results and show them
+
+  %body
+    %form{:action => "/guess", :method => "post"}
+      %select{:name => "color1"}
+        %option{:value => "Blue"} Blue
+        %option{:value => "Orange"} Orange
+        %option{:value => "Green"} Green
+        %option{:value => "Purple"} Purple
+        %option{:value => "Yellow"} Yellow
+        %option{:value => "Pink"} Pink
+      %select{:name => "color2"}
+        %option{:value => "Blue"} Blue
+        %option{:value => "Orange"} Orange
+        %option{:value => "Green"} Green
+        %option{:value => "Purple"} Purple
+        %option{:value => "Yellow"} Yellow
+        %option{:value => "Pink"} Pink
+      %select{:name => "color3"}
+        %option{:value => "Blue"} Blue
+        %option{:value => "Orange"} Orange
+        %option{:value => "Green"} Green
+        %option{:value => "Purple"} Purple
+        %option{:value => "Yellow"} Yellow
+        %option{:value => "Pink"} Pink
+      %select{:name => "color4"}
+        %option{:value => "Blue"} Blue
+        %option{:value => "Orange"} Orange
+        %option{:value => "Green"} Green
+        %option{:value => "Purple"} Purple
+        %option{:value => "Yellow"} Yellow
+        %option{:value => "Pink"} Pink
+      %div
+      %button Submit
