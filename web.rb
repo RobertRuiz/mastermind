@@ -7,7 +7,7 @@ require "sinatra/reloader" if development?
 $mastermind = MasterMind.new
 
 get "/" do
-  haml :welcome
+  erb :welcome
 end
 
 get "/play" do
@@ -15,16 +15,6 @@ get "/play" do
 end
 
 post "/guess" do
-  # Get the colors from the form
-  # Robert writes code here to pull the colors from the #submit button on the play URL
-  # color1, color2, color3, color4
-  # params[guess.color1]
-  # params[guess.color2]
-  # params[guess.color3]
-  # params[guess.color4]
-  # use "p" to output them to the terminal for debugging
-  # p __________
-  # p guess[]
   color1 = params["color1"]
   color2 = params["color2"]
   color3 = params["color3"]
@@ -32,20 +22,26 @@ post "/guess" do
 
   colors = [color1, color2, color3, color4]
 
-  $mastermind.guess(colors)
+  result = $mastermind.guess(colors)
 
-  # Go back to play
-  redirect '/play'
+  if $mastermind.guess_count > 10
+    redirect "/lose"
+  elsif $mastermind.result_win?(result)
+    redirect "/win"
+  else
+    # Go back to play
+    redirect '/play'
+  end
 end
 
 get "/uncle" do
-  haml :uncle
+  erb :uncle
 end
 
 get "/lose" do
-  haml :lose
+  erb :lose
 end
 
 get "/win" do
-  haml :win
+  erb :win
 end
