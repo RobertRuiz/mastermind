@@ -1,4 +1,5 @@
 require "sinatra"
+require 'erb'
 require 'haml'
 require_relative "mastermind"
 require "sinatra/reloader" if development?
@@ -10,7 +11,7 @@ get "/" do
 end
 
 get "/play" do
-  haml :play
+  erb :play
 end
 
 post "/guess" do
@@ -29,10 +30,10 @@ post "/guess" do
   color3 = params["color3"]
   color4 = params["color4"]
 
-  p color1
-  p color2
-  p color3
-  p color4
+  colors = [color1, color2, color3, color4]
+
+  $mastermind.guess(colors)
+
   # Go back to play
   redirect '/play'
 end

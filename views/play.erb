@@ -56,10 +56,30 @@
       Your history of guesses is as follows:
     </p>
     <% $mastermind.guess_history.each do |guess| %>
-      <!-- Guess is an array of strings -->
-      <% guess.each do |color| %>
-        <%= color %>
-      <% end %>
+
+      <ul>
+        <% guess.each do |color| %>
+          <li>
+            <%= color %>
+          </li>
+        <% end %>
+      </ul>
+
+      <!-- Show the results on the page -->
+      <div>
+      <ul>
+        <% $mastermind.result_history.each do |result| %>
+          <ul>
+            <% result.each do | guess | %>
+              <li>
+                <%= guess %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </ul>
+      </div>
+
     <% end %>
   </body>
 </html>
