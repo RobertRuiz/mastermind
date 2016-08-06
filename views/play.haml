@@ -1,45 +1,63 @@
 !!!
 %html
-
-  %p
-    This is a paragraph.  Here I will specify some
-    %strong
-      bold and
-      %em italicized
-      text.
-
-  -# I need to loop over the guesses and show them
-  -# I need to loop over the results and show them
+  %head
+    %title Mastermind, the game, the challenge
+  %p Play time!
+  %p The computer's ramdon's guess is = #{$mastermind.secret}
 
   %body
-    %form{:action => "/guess", :method => "post"}
-      %select{:name => "color1"}
-        %option{:value => "Blue"} Blue
-        %option{:value => "Orange"} Orange
-        %option{:value => "Green"} Green
-        %option{:value => "Purple"} Purple
-        %option{:value => "Yellow"} Yellow
-        %option{:value => "Pink"} Pink
-      %select{:name => "color2"}
-        %option{:value => "Blue"} Blue
-        %option{:value => "Orange"} Orange
-        %option{:value => "Green"} Green
-        %option{:value => "Purple"} Purple
-        %option{:value => "Yellow"} Yellow
-        %option{:value => "Pink"} Pink
-      %select{:name => "color3"}
-        %option{:value => "Blue"} Blue
-        %option{:value => "Orange"} Orange
-        %option{:value => "Green"} Green
-        %option{:value => "Purple"} Purple
-        %option{:value => "Yellow"} Yellow
-        %option{:value => "Pink"} Pink
-      %select{:name => "color4"}
-        %option{:value => "Blue"} Blue
-        %option{:value => "Orange"} Orange
-        %option{:value => "Green"} Green
-        %option{:value => "Purple"} Purple
-        %option{:value => "Yellow"} Yellow
-        %option{:value => "Pink"} Pink
+    %form{ action: "/guess", method: "post" }
+      %select{ name: "color1" }
+        %option{ value: "Blue" } Blue
+        %option{ value: "Orange" } Orange
+        %option{ value: "Green" } Green
+        %option{ value: "Purple" } Purple
+        %option{ value: "Yellow" } Yellow
+        %option{ value: "Pink" } Pink
+      %select{ name: "color2" }
+        %option{ value: "Blue" } Blue
+        %option{ value: "Orange" } Orange
+        %option{ value: "Green" } Green
+        %option{ value: "Purple" } Purple
+        %option{ value: "Yellow" } Yellow
+        %option{ value: "Pink" } Pink
+      %select{ name: "color3" }
+        %option{ value: "Blue" } Blue
+        %option{ value: "Orange" } Orange
+        %option{ value: "Green" } Green
+        %option{ value: "Purple" } Purple
+        %option{ value: "Yellow" } Yellow
+        %option{ value: "Pink" } Pink
+      %select{ name: "color4" }
+        %option{ value: "Blue" } Blue
+        %option{ value: "Orange" } Orange
+        %option{ value: "Green" } Green
+        %option{ value: "Purple" } Purple
+        %option{ value: "Yellow" } Yellow
+        %option{ value: "Pink" } Pink
       %div
-      %button Submit
+
+      %input{ type: "submit", value: "Give it your best Guess" }
+
+    %form{ action: "/uncle", method: "post" }
+      %input{ type: "submit", value: "Give up" }
+
+  %div
+    %p You've already guessed #{$mastermind.guess_count} times
+
+  %div
+    %p Your history of guesses is as follows:
+  - $mastermind.guess_history.each do |guess|
+    Please remember that only 10 guesses are available on each game
+
+    %p
+      The guess is
+      -# This for helping robert debug
+      %p= guess.inspect
+
+  -# I need to loop over the results and show them
+  -# %p The history of guesses is: #{$mastermind.guess_history}
+  -#
+
+  -# Need to keep track of how many guesses if =<10 then
+  -# %p You've already guessed #{$mastermind.guess_count} times
