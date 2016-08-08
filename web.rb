@@ -1,6 +1,5 @@
 require "sinatra"
 require 'erb'
-require 'haml'
 require_relative "mastermind"
 require "sinatra/reloader" if development?
 
@@ -26,22 +25,27 @@ post "/guess" do
 
   if $mastermind.guess_count > 10
     redirect "/lose"
+    return
   elsif $mastermind.result_win?(result)
     redirect "/win"
+    return
   else
-    # Go back to play
     redirect '/play'
+    return
   end
 end
 
 get "/uncle" do
+  $mastermind = MasterMind.new
   erb :uncle
 end
 
 get "/lose" do
+  $mastermind = MasterMind.new
   erb :lose
 end
 
 get "/win" do
+  $mastermind = MasterMind.new
   erb :win
 end

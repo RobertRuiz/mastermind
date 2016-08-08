@@ -2,12 +2,26 @@
 <html>
   <head>
     <title>Mastermind, the game, the challenge</title>
+    <link rel="stylesheet" href="/css/style.css">
   </head>
-  <p>Play time!</p>
-  <p>
-    <%= $mastermind.secret.inspect %>
-   </p>
+
   <body>
+    <h3>How to play: </h3>
+      <p> Mastermind is a mind game about guesseing four colored pins, the goal is to guess the code
+      and recreate the hidden row in the board game. You (the player or code breaker)
+      will have 10 chances to guess the color and placing of the covered pins. Below
+      the software will provide feedback as to how close you are after every attempt
+      made to guess the code or result.
+
+      Want more details, here is a video tutorial:
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/A7iS5RMLuJ0" frameborder="0" allowfullscreen></iframe>
+      </p>
+
+    <h1>Are you ready for Play time?, give it a guess</h1>
+    <p>
+      <%= $mastermind.secret.inspect %>
+    </p>
+
     <form action='/guess' method='post'>
       <select name='color1'>
         <option value='Blue'>Blue</option>
@@ -44,42 +58,44 @@
       <div></div>
       <input type='submit' value='Give it your best Guess'>
     </form>
-    <form action='/uncle' method='post'>
+    <form action='/uncle' method='get'>
       <input type='submit' value='Give up'>
     </form>
 
     <p>
       You've already guessed <%= $mastermind.guess_count %> times
     </p>
+    <p>
+      Your history of guesses is as follows:
+    </p>
+      <div class="container">
 
-      <div>
-        <p>
-          Your history of guesses is as follows:
-        </p>
-        <% $mastermind.guess_history.each do |guess| %>
-          <ul>
-            <% guess.each do |color| %>
-              <li>
-                <%= color %>
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
+        <div class="left">
 
-      <div>
-        <ul>
-          <% $mastermind.result_history.each do |result| %>
+          <% $mastermind.guess_history.each do |guess| %>
             <ul>
-              <% result.each do | guess | %>
+              <% guess.each do |color| %>
                 <li>
-                  <%= guess %>
+                  <%= color %>
                 </li>
               <% end %>
             </ul>
           <% end %>
-        </ul>
+        </div>
+
+        <div class="right">
+            <% $mastermind.result_history.each do |result| %>
+              <ul>
+                <% result.each do | guess | %>
+                  <li>
+                    <%= guess %>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+        </div>
       </div>
+      <!-- end of container div -->
 
   </body>
 </html>
